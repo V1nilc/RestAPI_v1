@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 import java.util.*
-import kotlin.Exception
 
 @ControllerAdvice
 @RestController
@@ -25,7 +24,7 @@ class CustomizedResponseEntityExceptionHandler : ResponseEntityExceptionHandler(
         return ResponseEntity<ExceptionResponse>(exceptioResponse, HttpStatus.INTERNAL_SERVER_ERROR)
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException::class)
+    @ExceptionHandler(UnsupportedException::class)
     fun handleBadRequestExceptions(ex: Exception, request: WebRequest) :
             ResponseEntity<ExceptionResponse> {
         val exceptioResponse = ExceptionResponse(
